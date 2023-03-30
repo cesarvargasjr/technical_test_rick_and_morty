@@ -7,7 +7,6 @@ interface ResultProps {
   name: string;
   image: string;
   alt: string;
-  location: string;
 }
 
 interface PropsData {
@@ -22,22 +21,21 @@ export const Home = () => {
     setData(response);
   };
 
-  console.log("**********", data);
-
   useEffect(() => {
     Data();
   }, []);
 
   return (
     <S.ContainerPage>
-      {data?.results?.map((item: any) => (
-        <Card
-          name={item?.name}
-          image={item?.image}
-          alt={item?.name}
-          location={item?.location?.name}
-        />
-      ))}
+      <S.ContainerFilters></S.ContainerFilters>
+      <S.ContainerContent>
+        <S.Title>Characters</S.Title>
+        <S.Content>
+          {data?.results?.map((item: any) => (
+            <Card name={item?.name} image={item?.image} alt={item?.name} />
+          ))}
+        </S.Content>
+      </S.ContainerContent>
     </S.ContainerPage>
   );
 };

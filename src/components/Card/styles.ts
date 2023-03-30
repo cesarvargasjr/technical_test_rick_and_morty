@@ -3,16 +3,18 @@ import colors from '../../styles/colors';
 
 export const ContainerCard = styled.div`
   display: flex;
-  height: 280px;
+  height: 240px;
   width: 150px;
-  border-radius: 5px;
   flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const Name = styled.h2`
   color: ${colors.white};
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  text-align: center;
 `;
 
 export const Location = styled.p`
@@ -24,15 +26,4 @@ export const Image = styled.img`
   min-height: 200px;
   width: 100%;
   border-radius: 5px;
-  resize: contain;
-
-  @media (max-width: 590px) {
-    height: 100px;
-    width: 100px;
-  }
-
-  @media (max-width: 380px) {
-    height: 60px;
-    width: 60px;
-  }
 `;
