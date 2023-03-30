@@ -32,7 +32,12 @@ export const Home = () => {
         <S.Title>Characters</S.Title>
         <S.Content>
           {data?.results?.map((item: any) => (
-            <Card name={item?.name} image={item?.image} alt={item?.name} />
+            <Card
+              key={item?.id}
+              name={item?.name}
+              image={item?.image}
+              alt={item?.name}
+            />
           ))}
         </S.Content>
       </S.ContainerContent>
