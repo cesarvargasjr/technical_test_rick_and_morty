@@ -4,4 +4,7 @@ export default {
   white: '#FFF',
   darkBlue: '#0A1325',
   blueSecondary: '#081C42',
+  red: '#F5222D',
+  green: '#00A676',
+  orange: '#FF6424',
 };

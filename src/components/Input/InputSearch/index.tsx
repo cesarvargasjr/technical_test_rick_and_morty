@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-interface PropsInputSearch {
+interface InputSearchProps {
   placeholder: string;
   value: string;
   onChange: (e: any) => void;
@@ -10,7 +10,7 @@ export const InputSearch = ({
   onChange,
   placeholder,
   value,
-}: PropsInputSearch) => {
+}: InputSearchProps) => {
   return (
     <S.ContainerInput>
       <input
