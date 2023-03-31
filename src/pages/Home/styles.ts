@@ -12,6 +12,8 @@ export const ContainerPage = styled.div`
 
 export const Title = styled.h1`
   font-size: 30px;
+  margin-top: 40px;
+  margin-bottom: 30px;
   color: ${colors.white};
 `;
 
