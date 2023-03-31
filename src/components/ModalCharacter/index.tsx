@@ -1,5 +1,6 @@
 import { useState } from "react";
-import IconHeart from "../../assets/iconHeartGrey.svg";
+import IconHeartGrey from "../../assets/iconHeartGrey.svg";
+import IconHeartRed from "../../assets/iconHeart.svg";
 import * as S from "./styles";
 
 interface ModalProps {
@@ -9,6 +10,7 @@ interface ModalProps {
   gender: string;
   origin: string;
   image: string;
+  id: number;
   setShowModal: (_: boolean) => void;
 }
 
@@ -20,13 +22,13 @@ export const ModalCharacter = ({
   gender,
   origin,
   image,
+  id,
 }: ModalProps) => {
   const closeModal = () => {
     setShowModal(false);
   };
 
   const [likes, setLikes] = useState<any>();
-  // JSON.parse(localStorage.getItem("likes"))
 
   const handleLike = (id: number) => {
     if (!likes) {
@@ -44,6 +46,9 @@ export const ModalCharacter = ({
     localStorage.setItem("likes", JSON.stringify(likes));
   };
 
+  console.log("ID PERSONAGEM ===>>> ", id);
+  console.log("FAVORITOS ===>>> ", likes);
+
   return (
     <>
       <S.Background onClick={closeModal} />
@@ -54,9 +59,9 @@ export const ModalCharacter = ({
           <S.ContainerInLineTitle>
             <S.Title>{name}</S.Title>
             <S.Like
-              src={IconHeart}
+              src={IconHeartGrey}
               alt="icone favoritar"
-              onClick={() => handleLike(1)}
+              onClick={(e) => handleLike(id)}
             />
           </S.ContainerInLineTitle>
           <S.ContainerInLine>

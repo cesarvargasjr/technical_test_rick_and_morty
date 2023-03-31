@@ -66,6 +66,7 @@ export const Home = () => {
       {showModal && (
         <ModalCharacter
           setShowModal={setShowModal}
+          id={dataSingleCharacter?.id}
           name={dataSingleCharacter?.name}
           image={dataSingleCharacter?.image}
           status={dataSingleCharacter?.status}
