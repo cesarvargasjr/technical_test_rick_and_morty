@@ -1,6 +1,6 @@
 import api from './api';
 
-export const getCharacter = async (value: string, page = 1) => {
+export const getAllCharacter = async (value: string, page = 1) => {
   try {
     const { data } = await api.get(`/character/?page=${page}&name=${value}`);
     return data;
@@ -11,6 +11,16 @@ export const getCharacter = async (value: string, page = 1) => {
       return []
     }
 
+    throw error;
+  }
+};
+
+export const getCharacter = async (id: number) => {
+  try {
+    const { data } = await api.get(`/character/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
     throw error;
   }
 };

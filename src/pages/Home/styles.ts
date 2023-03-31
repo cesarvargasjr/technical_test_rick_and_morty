@@ -53,7 +53,7 @@ export const ContainerFilters = styled.div`
   border: 1px solid white;
 `;
 
-export const SearchEmpty = styled.img`
+export const SearchEmptyImage = styled.img`
   height: 200px;
   width: 300px;
 `;
