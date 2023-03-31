@@ -30,11 +30,23 @@ export const ContainerContent = styled.div`
   display: flex;
 `;
 
-export const Content = styled.div`
+export const ContainerCharacters = styled.div`
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ContainerPagination = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ContainerFilters = styled.div`
