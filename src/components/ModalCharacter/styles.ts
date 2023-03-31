@@ -18,11 +18,13 @@ export const ContainerModal = styled.div`
   width: 600px;
   height: 250px;
   justify-content: space-between;
+  background-color: ${colors.greyLight};
 `;
 
 export const Background = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  top: 0;
   position: fixed;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.30);
@@ -34,6 +36,12 @@ export const ImgCharacter = styled.img`
   height: 250px;
   width: 180px;
   border-radius: 5px;
+`;
+
+export const Like = styled.img`
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 `;
 
 export const Title = styled.h2`
@@ -74,14 +82,18 @@ export const ContainerInLineTitle = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  margin-top: -25px;
+  margin-bottom: 10px;
 `;
 
 export const Status = styled.div<{ status?: string }>`
   display: flex;
+  position: relative;
+  right: 230px;
+  top: 5px;
   color: ${colors.white};
   border-radius: 5px;
-  width: 85px;
-  height: 30px;
+  padding: 0 6px;
   justify-content: center;
   align-items: center;
   margin-left: 30px;

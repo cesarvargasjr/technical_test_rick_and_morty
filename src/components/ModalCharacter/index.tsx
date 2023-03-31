@@ -1,3 +1,4 @@
+import IconHeart from "../../assets/iconHeart.svg";
 import * as S from "./styles";
 
 interface ModalProps {
@@ -29,9 +30,10 @@ export const ModalCharacter = ({
       <S.ContainerModal>
         <S.ImgCharacter src={image} alt="busca não encontrada" />
         <S.ContainerInfo>
+          <S.Status status={status}>{status}</S.Status>
           <S.ContainerInLineTitle>
             <S.Title>{name}</S.Title>
-            <S.Status status={status}>{status}</S.Status>
+            <S.Like src={IconHeart} alt="icone favoritar" />
           </S.ContainerInLineTitle>
           <S.ContainerInLine>
             <S.SubtitleInfo>Espécie:</S.SubtitleInfo>
