@@ -41,7 +41,12 @@ export const ImgCharacter = styled.img`
 export const Like = styled.img`
   height: 30px;
   width: 30px;
+  transition: transform 0.5s ease;
   cursor: pointer;
+
+  :hover {
+    transform: scale(1.2);
+  }
 `;
 
 export const Title = styled.h2`

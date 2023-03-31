@@ -1,4 +1,5 @@
-import IconHeart from "../../assets/iconHeart.svg";
+import { useState } from "react";
+import IconHeart from "../../assets/iconHeartGrey.svg";
 import * as S from "./styles";
 
 interface ModalProps {
@@ -24,6 +25,25 @@ export const ModalCharacter = ({
     setShowModal(false);
   };
 
+  const [likes, setLikes] = useState<any>();
+  // JSON.parse(localStorage.getItem("likes"))
+
+  const handleLike = (id: number) => {
+    if (!likes) {
+      localStorage.setItem("likes", JSON.stringify([]));
+      setLikes([]);
+    }
+
+    if (likes?.includes(id)) {
+      console.log(id);
+      likes.splice(likes.indexOf(id), 1);
+    } else {
+      likes?.push(id);
+    }
+
+    localStorage.setItem("likes", JSON.stringify(likes));
+  };
+
   return (
     <>
       <S.Background onClick={closeModal} />
@@ -33,7 +53,11 @@ export const ModalCharacter = ({
           <S.Status status={status}>{status}</S.Status>
           <S.ContainerInLineTitle>
             <S.Title>{name}</S.Title>
-            <S.Like src={IconHeart} alt="icone favoritar" />
+            <S.Like
+              src={IconHeart}
+              alt="icone favoritar"
+              onClick={() => handleLike(1)}
+            />
           </S.ContainerInLineTitle>
           <S.ContainerInLine>
             <S.SubtitleInfo>Espécie:</S.SubtitleInfo>

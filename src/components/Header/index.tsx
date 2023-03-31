@@ -17,6 +17,7 @@ export const Header = () => {
         alt="rick and morty"
         onClick={() => handleSearch()}
       />
+      <S.Option>Favoritos</S.Option>
       <S.ContainerInput>
         <InputSearch
           placeholder={"O que você procura?"}

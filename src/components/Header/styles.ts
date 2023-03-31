@@ -6,13 +6,13 @@ export const ContainerHeader = styled.div`
   height: 80px;
   width: 100%;
   padding-top: 5px;
-  justify-content: center;
+  align-items: center;
   background-color: ${colors.blueSecondary};
 `;
 
 export const ContainerInput = styled.div`
   position: absolute;
-  right: 100px;
+  right: 180px;
   height: 80px;
   margin-top: -3px;
   display: flex;
@@ -21,5 +21,14 @@ export const ContainerInput = styled.div`
 
 export const Image = styled.img`
   height: 100%;
+  cursor: pointer;
+  margin-left: 170px;
+  margin-right: 100px;
+`;
+
+export const Option = styled.p`
+  font-weight: 600;
+  font-size: 22px;
+  color: ${colors.white};
   cursor: pointer;
 `;
