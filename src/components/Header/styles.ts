@@ -12,7 +12,7 @@ export const ContainerHeader = styled.div`
 
 export const ContainerInput = styled.div`
   position: absolute;
-  right: 50px;
+  right: 100px;
   height: 80px;
   margin-top: -3px;
   display: flex;
@@ -21,4 +21,5 @@ export const ContainerInput = styled.div`
 
 export const Image = styled.img`
   height: 100%;
+  cursor: pointer;
 `;

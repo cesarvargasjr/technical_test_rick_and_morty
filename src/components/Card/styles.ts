@@ -7,7 +7,8 @@ export const ContainerCard = styled.div`
   width: 150px;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  margin-right: 50px;
+  margin-bottom: 70px;
 `;
 
 export const Name = styled.h2`
@@ -26,4 +27,10 @@ export const Image = styled.img`
   min-height: 200px;
   width: 100%;
   border-radius: 5px;
+  transition: transform 1s ease;
+  cursor: pointer;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;
