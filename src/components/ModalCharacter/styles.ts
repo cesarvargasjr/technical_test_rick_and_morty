@@ -45,7 +45,7 @@ export const Like = styled.img`
   cursor: pointer;
 
   :hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
   }
 `;
 
