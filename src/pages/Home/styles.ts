@@ -13,9 +13,22 @@ export const Title = styled.h1`
   font-size: 30px;
   line-height: 35px;
   max-height: 35px;
+  font-weight: 600;
   width: 100%;
   margin-top: 0;
   margin-bottom: 40px;
+  color: ${colors.white};
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CountCharacters = styled.p`
+  font-size: 21px;
+  line-height: 35px;
+  font-weight: 600;
+  margin-left: 8px;
   color: ${colors.white};
 `;
 
@@ -33,13 +46,13 @@ export const ContainerContent = styled.div`
 export const ContainerCharacters = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* height: 100%; */
   width: 100%;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const ContainerPagination = styled.div`
@@ -75,6 +88,7 @@ export const ContainerSearchEmpty = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 120px;
   justify-content: center;
   align-items: center;
 `;

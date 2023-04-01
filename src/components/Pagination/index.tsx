@@ -1,46 +1,42 @@
+import { usePagination } from "../../context/pagination";
 import * as S from "./styles";
 
 interface PaginationProps {
-  currentPage: number;
-  setCurrentPage: any;
   pageSize: number;
 }
 
-export const Pagination = ({
-  currentPage,
-  setCurrentPage,
-  pageSize,
-}: PaginationProps) => {
+export const Pagination = ({ pageSize }: PaginationProps) => {
+  const { currentPage, setCurrentPage } = usePagination();
+
   const PreviousPage = () => {
     if (currentPage === 1) {
-      return <S.PreviousPage page={currentPage}>Anterior</S.PreviousPage>;
+      return <S.PreviousPage currentPage={currentPage}>{"<"}</S.PreviousPage>;
     } else {
       return (
         <S.PreviousPage
-          page={currentPage}
+          currentPage={currentPage}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
-          Anterior
+          {"<"}
         </S.PreviousPage>
       );
     }
   };
 
   const NextPage = () => {
-    if (currentPage === pageSize) {
+    if (pageSize === undefined || pageSize === currentPage) {
       return (
-        <S.NextPage currentPage={currentPage} pageSize={pageSize}>
-          Próximo
+        <S.NextPage pageSize={pageSize} currentPage={currentPage}>
+          {">"}
         </S.NextPage>
       );
     } else {
       return (
         <S.NextPage
-          currentPage={currentPage}
           pageSize={pageSize}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Próximo
+          {">"}
         </S.NextPage>
       );
     }

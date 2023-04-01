@@ -1,13 +1,16 @@
 import { InputSearch } from "../Input/InputSearch";
 import { useSearchInput } from "../../context/inputSearch";
+import { usePagination } from "../../context/pagination";
 import RickAndMorty from "../../assets/rickAndMorty.png";
 import * as S from "./styles";
 
 export const Header = () => {
   const { value, setValue } = useSearchInput();
+  const { setCurrentPage } = usePagination();
 
   const handleSearch = () => {
     setValue("");
+    setCurrentPage(1);
   };
 
   return (
@@ -20,8 +23,9 @@ export const Header = () => {
       <S.ContainerInput>
         <InputSearch
           placeholder={"O que você procura?"}
-          onChange={(e) => setValue(e.target.value)}
           value={value}
+          // eslint-disable-next-line no-sequences
+          onChange={(e) => (setValue(e.target.value), setCurrentPage(1))}
         />
       </S.ContainerInput>
     </S.ContainerHeader>
