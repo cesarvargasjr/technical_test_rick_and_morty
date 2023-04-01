@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllCharacter, getCharacter } from "../../services/characters";
+import { usePagination } from "../../context/pagination";
 import { useSearchInput } from "../../context/inputSearch";
 import { ModalCharacter } from "../../components/ModalCharacter";
 import { Pagination } from "../../components/Pagination";
@@ -35,12 +36,11 @@ interface SingleCharacterProps {
 
 export const Home = () => {
   const { value } = useSearchInput();
+  const { currentPage } = usePagination();
   const [data, setData] = useState<DataProps>();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [dataSingleCharacter, setDataSingleCharacter] = useState<any>();
-  const [currentPage, setCurrentPage] = useState(1);
   const [items] = useState([]);
-
   const pageSize: any = data?.info?.pages;
 
   const handleAllCharacter = async (value: string) => {
@@ -55,6 +55,7 @@ export const Home = () => {
 
   useEffect(() => {
     handleAllCharacter(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, value]);
 
   const SearchEmpty = () => {
@@ -88,7 +89,12 @@ export const Home = () => {
         <S.ContainerFilters>FILTROS</S.ContainerFilters>
         <S.Content>
           <S.ContainerCharacters>
-            <S.Title>Personagens ({data?.info?.count})</S.Title>
+            <S.Title>
+              Personagens
+              <S.CountCharacters>
+                ({data?.length === 0 ? "0" : data?.info?.count})
+              </S.CountCharacters>
+            </S.Title>
             {data?.results?.map((item: any) => (
               <Card
                 key={item?.id}
@@ -109,11 +115,7 @@ export const Home = () => {
               .map((item: any) => (
                 <li key={item.id}>{item.name}</li>
               ))}
-            <Pagination
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              pageSize={pageSize}
-            />
+            <Pagination pageSize={pageSize} />
           </S.ContainerPagination>
         </S.Content>
       </S.ContainerPage>

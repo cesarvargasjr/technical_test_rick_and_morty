@@ -1,12 +1,15 @@
 import { InputSearchProvider } from "./context/inputSearch";
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
+import { PaginationProvider } from "./context/pagination";
 
 function App() {
   return (
     <InputSearchProvider>
-      <Header />
-      <Home />
+      <PaginationProvider>
+        <Header />
+        <Home />
+      </PaginationProvider>
     </InputSearchProvider>
   );
 }

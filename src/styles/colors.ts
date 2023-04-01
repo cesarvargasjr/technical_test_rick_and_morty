@@ -2,8 +2,9 @@
 export default {
   black: '#000',
   white: '#FFF',
+  blue: '#4682B4',
   darkBlue: '#0A1325',
-  blueSecondary: '#081C42',
+  blueSecondary: '#072658',
   red: '#F5222D',
   green: '#00A676',
   orange: '#FF6424',
