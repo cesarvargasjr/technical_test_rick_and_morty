@@ -1,51 +1,69 @@
 import { useState, useEffect } from "react";
 import { getAllCharacter, getCharacter } from "../../services/characters";
-import { usePagination } from "../../context/pagination";
-import { useSearchInput } from "../../context/inputSearch";
+import { usePagination } from "../../context/Pagination";
+import { useSearchInput } from "../../context/InputSearch";
 import { ModalCharacter } from "../../components/ModalCharacter";
 import { Pagination } from "../../components/Pagination";
 import { Card } from "../../components/Card";
+import {
+  CharacterState,
+  CharacterProps,
+  useCharacter,
+} from "../../context/Character";
 import ImgSearchEmpty from "../../assets/searchEmpty.png";
 import * as S from "./styles";
 
-interface ResultProps {
-  name: string;
-  image: string;
-  alt: string;
-}
-
-interface DataProps {
-  results: ResultProps[];
-  length?: number;
-  info: {
-    count: number;
-    pages: number;
-  };
+interface InfoProps {
+  count: number;
+  pages: number;
 }
 
 interface SingleCharacterProps {
-  name?: string;
-  image?: string;
-  status?: string;
-  species?: string;
-  gender?: string;
-  origin?: {
-    name?: string;
+  id: number;
+  name: string;
+  image: string;
+  status: string;
+  species: string;
+  gender: string;
+  origin: {
+    name: string;
   };
 }
 
 export const Home = () => {
   const { value } = useSearchInput();
+  const {
+    characters,
+    setCharacters,
+    characterState,
+    redrawCharacter,
+    handleRedrawCharacters,
+  } = useCharacter();
+  const [dataSingleCharacter, setDataSingleCharacter] =
+    useState<SingleCharacterProps>({} as SingleCharacterProps);
   const { currentPage } = usePagination();
-  const [data, setData] = useState<DataProps>();
+  const [info, setInfo] = useState<InfoProps>();
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [dataSingleCharacter, setDataSingleCharacter] = useState<any>();
   const [items] = useState([]);
-  const pageSize: any = data?.info?.pages;
+  const pageSize: any = info?.pages;
 
   const handleAllCharacter = async (value: string) => {
-    const response = await getAllCharacter(value, currentPage);
-    setData(response);
+    if (characterState === CharacterState.ALL) {
+      const response = await getAllCharacter(value, currentPage);
+      setInfo({ count: response?.info.count, pages: response?.info.pages });
+      setCharacters(response?.results as CharacterProps[]);
+    } else if (characterState === CharacterState.FAVORITES) {
+      const favoriteCharacters = localStorage.getItem("likes")
+        ? JSON.parse(localStorage.getItem("likes") as string)
+        : [];
+
+      const searchItem = (value: string) =>
+        favoriteCharacters.filter((character: CharacterProps) =>
+          character.name.toLowerCase().includes(value)
+        );
+
+      setCharacters(value ? searchItem(value) : favoriteCharacters);
+    }
   };
 
   const handleSingleCharacter = async (id: number) => {
@@ -53,13 +71,72 @@ export const Home = () => {
     setDataSingleCharacter(response);
   };
 
+  const CountCharacters = () => (
+    <S.ContainerCharacters>
+      (
+      {characterState === CharacterState.FAVORITES
+        ? characters.length
+        : characters.length === 0
+        ? "0"
+        : info?.count}
+      )
+    </S.ContainerCharacters>
+  );
+
+  const DeleteAllFavorites = () => {
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    const handleDeleteAllFavorites = () => {
+      setCharacters([]);
+      localStorage.setItem("likes", JSON.stringify([]));
+      handleRedrawCharacters();
+      setShowConfirm(false);
+    };
+
+    useEffect(() => {
+      if (showConfirm) {
+        const time = setTimeout(() => {
+          setShowConfirm(false);
+          clearTimeout(time);
+        }, 5000);
+      }
+    }, [showConfirm]);
+
+    const ConfirmDelete = () => (
+      <S.DeleteAllFavorites>
+        <span className="confirm" onClick={() => handleDeleteAllFavorites()}>
+          ✔ confirmar
+        </span>
+        <span className="cancel" onClick={() => setShowConfirm(false)}>
+          ✕ cancelar
+        </span>
+      </S.DeleteAllFavorites>
+    );
+
+    return characterState === CharacterState.FAVORITES &&
+      characters.length > 0 ? (
+      showConfirm ? (
+        <ConfirmDelete />
+      ) : (
+        <S.DeleteAllFavorites onClick={() => setShowConfirm(true)}>
+          <span>Remover todos</span>
+        </S.DeleteAllFavorites>
+      )
+    ) : null;
+  };
+
+  const PaginationHome = () =>
+    characterState === CharacterState.ALL ? (
+      <Pagination pageSize={pageSize} />
+    ) : null;
+
   useEffect(() => {
     handleAllCharacter(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, value]);
+  }, [currentPage, value, characterState, redrawCharacter]);
 
   const SearchEmpty = () => {
-    if (data?.results?.length === 0 || data?.length === 0) {
+    if (characters.length === 0 || characters.length === 0) {
       return (
         <S.ContainerSearchEmpty>
           <S.SearchEmptyImage src={ImgSearchEmpty} alt="busca não encontrada" />
@@ -76,12 +153,13 @@ export const Home = () => {
       {showModal && (
         <ModalCharacter
           setShowModal={setShowModal}
-          name={dataSingleCharacter?.name}
-          image={dataSingleCharacter?.image}
-          status={dataSingleCharacter?.status}
-          specie={dataSingleCharacter?.species}
-          gender={dataSingleCharacter?.gender}
-          origin={dataSingleCharacter?.origin?.name}
+          id={dataSingleCharacter.id}
+          name={dataSingleCharacter.name}
+          image={dataSingleCharacter.image}
+          status={dataSingleCharacter.status}
+          specie={dataSingleCharacter.species}
+          gender={dataSingleCharacter.gender}
+          origin={dataSingleCharacter.origin?.name || ""}
         />
       )}
       <S.ContainerPage>
@@ -90,19 +168,18 @@ export const Home = () => {
           <S.ContainerCharacters>
             <S.Title>
               Personagens
-              <S.CountCharacters>
-                ({data?.length === 0 ? "0" : data?.info?.count})
-              </S.CountCharacters>
+              <CountCharacters />
+              <DeleteAllFavorites />
             </S.Title>
-            {data?.results?.map((item: any) => (
+            {characters?.map((item: CharacterProps) => (
               <Card
-                key={item?.id}
-                name={item?.name}
-                image={item?.image}
-                alt={item?.name}
+                key={item.id}
+                name={item.name}
+                image={item.image}
+                alt={item.name}
                 onClick={() => (
                   // eslint-disable-next-line no-sequences
-                  setShowModal(true), handleSingleCharacter(item?.id)
+                  setShowModal(true), handleSingleCharacter(item.id)
                 )}
               />
             ))}
@@ -114,7 +191,7 @@ export const Home = () => {
               .map((item: any) => (
                 <li key={item.id}>{item.name}</li>
               ))}
-            <Pagination pageSize={pageSize} />
+            <PaginationHome />
           </S.ContainerPagination>
         </S.Content>
       </S.ContainerPage>

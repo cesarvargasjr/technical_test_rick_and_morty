@@ -27,7 +27,7 @@ export const Image = styled.img`
   min-height: 200px;
   width: 100%;
   border-radius: 5px;
-  transition: transform 1s ease;
+  transition: transform 0.5s ease;
   cursor: pointer;
 
   :hover {

@@ -1,4 +1,4 @@
-import { usePagination } from "../../context/pagination";
+import { usePagination } from "../../context/Pagination";
 import * as S from "./styles";
 
 interface PaginationProps {
