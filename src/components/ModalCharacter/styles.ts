@@ -40,9 +40,26 @@ export const ImgCharacter = styled.img`
 
 export const Like = styled.img`
   height: 30px;
+  width: 34px;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+  margin-left: 20px;
+  position: absolute;
+
+  :hover {
+    transform: scale(1.3);
+  }
+`;
+
+export const Close = styled.img`
+  height: 30px;
   width: 30px;
   transition: transform 0.5s ease;
   cursor: pointer;
+
+  position: absolute;
+  top: 9px;
+  right: 10px;
 
   :hover {
     transform: scale(1.3);
@@ -74,6 +91,9 @@ export const ContainerInfo = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+
+export const ContainerOptions = styled.div``;
 
 export const ContainerInLine = styled.div`
   display: flex;

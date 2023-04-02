@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CharacterState, useCharacter } from "../../context/Character";
 import IconHeartGrey from "../../assets/iconHeartGrey.svg";
 import IconHeartRed from "../../assets/iconHeart.svg";
+import IconClose from "../../assets/iconClose.svg";
 import * as S from "./styles";
 
 interface ModalProps {
@@ -28,7 +30,17 @@ export const ModalCharacter = ({
     setShowModal(false);
   };
 
-  const [likes, setLikes] = useState<any>();
+  const { handleRedrawCharacters, redrawCharacter, characterState } =
+    useCharacter();
+  const [likes, setLikes] = useState<any>(
+    JSON.parse(localStorage.getItem("likes") as any) || []
+  );
+
+  const character = likes?.find((e: any) => e.id === id);
+
+  const handleRedraw = () => {
+    handleRedrawCharacters();
+  };
 
   const handleLike = (id: number) => {
     if (!likes) {
@@ -36,18 +48,28 @@ export const ModalCharacter = ({
       setLikes([]);
     }
 
-    if (likes?.includes(id)) {
-      console.log(id);
-      likes.splice(likes.indexOf(id), 1);
+    if (character) {
+      likes.splice(likes.indexOf(character), 1);
+      if (characterState === CharacterState.FAVORITES) closeModal();
     } else {
-      likes?.push(id);
+      likes?.push({
+        name,
+        status,
+        specie,
+        gender,
+        origin,
+        image,
+        id,
+      });
     }
 
     localStorage.setItem("likes", JSON.stringify(likes));
+    handleRedraw();
   };
 
-  console.log("ID PERSONAGEM ===>>> ", id);
-  console.log("FAVORITOS ===>>> ", likes);
+  const LikeIcon = (id: number) => (character ? IconHeartRed : IconHeartGrey);
+
+  useEffect(() => {}, [redrawCharacter]);
 
   return (
     <>
@@ -57,12 +79,22 @@ export const ModalCharacter = ({
         <S.ContainerInfo>
           <S.Status status={status}>{status}</S.Status>
           <S.ContainerInLineTitle>
-            <S.Title>{name}</S.Title>
-            <S.Like
-              src={IconHeartGrey}
-              alt="icone favoritar"
-              onClick={(e) => handleLike(id)}
-            />
+            <S.Title>
+              {name}
+              <S.Like
+                src={LikeIcon(id)}
+                alt="icone favoritar"
+                onClick={() => handleLike(id)}
+                title={
+                  character
+                    ? "Remover dos favoritos"
+                    : "Adicionar aos favoritos"
+                }
+              />
+            </S.Title>
+            <S.ContainerOptions>
+              <S.Close src={IconClose} onClick={closeModal} title="Fechar" />
+            </S.ContainerOptions>
           </S.ContainerInLineTitle>
           <S.ContainerInLine>
             <S.SubtitleInfo>Espécie:</S.SubtitleInfo>

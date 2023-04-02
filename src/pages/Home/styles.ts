@@ -22,6 +22,7 @@ export const Title = styled.h1`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-rigth: 50px;
 `;
 
 export const CountCharacters = styled.p`
@@ -47,6 +48,8 @@ export const ContainerCharacters = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-left: 10px;
+  max-width: 1400px;
 `;
 
 export const Content = styled.div`
@@ -91,4 +94,21 @@ export const ContainerSearchEmpty = styled.div`
   margin-bottom: 120px;
   justify-content: center;
   align-items: center;
+`;
+
+export const DeleteAllFavorites = styled.div`
+  font-size: 14px;
+  white-space: nowrap;
+  position: absolute;
+  right: 180px;
+
+  cursor: pointer;
+
+  & span:hover {
+    text-decoration: underline;
+  }
+
+  & span.confirm {
+    margin-right: 50px;
+  }
 `;

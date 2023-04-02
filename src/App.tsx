@@ -1,7 +1,8 @@
-import { InputSearchProvider } from "./context/inputSearch";
-import { PaginationProvider } from "./context/pagination";
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
+import { InputSearchProvider } from "./context/InputSearch";
+import { PaginationProvider } from "./context/Pagination";
+import { CharacterProvider } from "./context/Character";
 
 const composeProviders =
   (
@@ -15,7 +16,11 @@ const composeProviders =
       props.children
     );
 
-const AllProviders = composeProviders(InputSearchProvider, PaginationProvider);
+const AllProviders = composeProviders(
+  InputSearchProvider,
+  PaginationProvider,
+  CharacterProvider
+);
 
 function App() {
   return (

@@ -31,4 +31,5 @@ export const Option = styled.p`
   font-size: 22px;
   color: ${colors.white};
   cursor: pointer;
+  margin-right: 40px;
 `;
