@@ -3,6 +3,7 @@ import { Home } from "./pages/Home";
 import { InputSearchProvider } from "./context/InputSearch";
 import { PaginationProvider } from "./context/Pagination";
 import { CharacterProvider } from "./context/Character";
+import { FilterProvider } from "./context/Filters";
 
 const composeProviders =
   (
@@ -19,7 +20,8 @@ const composeProviders =
 const AllProviders = composeProviders(
   InputSearchProvider,
   PaginationProvider,
-  CharacterProvider
+  CharacterProvider,
+  FilterProvider
 );
 
 function App() {

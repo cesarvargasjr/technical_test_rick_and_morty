@@ -1,12 +1,14 @@
 import { usePagination } from "../../context/Pagination";
 import * as S from "./styles";
 
-interface PaginationProps {
-  pageSize: number;
-}
+export const Pagination = () => {
+  const { currentPage, setCurrentPage, pageSize, pageList } = usePagination();
 
-export const Pagination = ({ pageSize }: PaginationProps) => {
-  const { currentPage, setCurrentPage } = usePagination();
+  const handleCurrentPage = (currentPage: any) => {
+    if (currentPage !== "...") {
+      setCurrentPage(Number(currentPage));
+    }
+  };
 
   const PreviousPage = () => {
     if (currentPage === 1) {
@@ -15,7 +17,7 @@ export const Pagination = ({ pageSize }: PaginationProps) => {
       return (
         <S.PreviousPage
           currentPage={currentPage}
-          onClick={() => setCurrentPage(currentPage - 1)}
+          onClick={() => handleCurrentPage(currentPage - 1)}
         >
           {"<"}
         </S.PreviousPage>
@@ -34,7 +36,7 @@ export const Pagination = ({ pageSize }: PaginationProps) => {
       return (
         <S.NextPage
           pageSize={pageSize}
-          onClick={() => setCurrentPage(currentPage + 1)}
+          onClick={() => handleCurrentPage(currentPage + 1)}
         >
           {">"}
         </S.NextPage>
@@ -45,7 +47,15 @@ export const Pagination = ({ pageSize }: PaginationProps) => {
   return (
     <S.ContainerPagination>
       <PreviousPage />
-      <S.CurrentePage>{currentPage}</S.CurrentePage>
+      {pageList.map((page: any, i: number) => (
+        <S.CurrentePage
+          key={i}
+          onClick={() => handleCurrentPage(page)}
+          className={currentPage === page ? "active" : ""}
+        >
+          {page}
+        </S.CurrentePage>
+      ))}
       <NextPage />
     </S.ContainerPagination>
   );

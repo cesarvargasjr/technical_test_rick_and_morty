@@ -53,9 +53,7 @@ function CharacterProvider({ children }: any) {
       const filters: any = {
         status: [],
         species: [],
-        types: [],
         genders: [],
-        origins: [],
       };
       do {
         data = (await api.get(`/character/?page=${page++}`))?.data;
@@ -66,16 +64,15 @@ function CharacterProvider({ children }: any) {
             ac.status.push(it.status);
           if (!ac.species.includes(it.species) && it.species)
             ac.species.push(it.species);
-          if (!ac.types.includes(it.type) && it.type) ac.types.push(it.type);
           if (!ac.genders.includes(it.gender) && it.gender)
             ac.genders.push(it.gender);
-          if (!ac.origins.includes(it.origin?.name) && it.origin)
-            ac.origins.push(it.origin.name);
           return ac;
         }, filters);
 
         localStorage.setItem("filters", JSON.stringify(filters));
       } while (data?.info?.next);
+
+      handleRedrawCharacters();
     } catch (error: any) {
       console.log(error);
 

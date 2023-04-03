@@ -5,6 +5,8 @@ import { useSearchInput } from "../../context/InputSearch";
 import { ModalCharacter } from "../../components/ModalCharacter";
 import { Pagination } from "../../components/Pagination";
 import { Card } from "../../components/Card";
+import { Filter } from "../../components/Filter";
+import { useFilters } from "../../context/Filters";
 import {
   CharacterState,
   CharacterProps,
@@ -32,6 +34,8 @@ interface SingleCharacterProps {
 
 export const Home = () => {
   const { value } = useSearchInput();
+  const { filter, setFilter } = useFilters();
+  const { currentPage, setPageSize, pageSize } = usePagination();
   const {
     characters,
     setCharacters,
@@ -41,17 +45,39 @@ export const Home = () => {
   } = useCharacter();
   const [dataSingleCharacter, setDataSingleCharacter] =
     useState<SingleCharacterProps>({} as SingleCharacterProps);
-  const { currentPage } = usePagination();
   const [info, setInfo] = useState<InfoProps>();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [items] = useState([]);
-  const pageSize: any = info?.pages;
+
+  const filterOptions =
+    JSON.parse(localStorage.getItem("filters") as string) || [];
+
+  const handleFilter = (item: string, id: string) => {
+    if (!filter?.item) {
+      setFilter({ item, id });
+    } else if (filter?.item === item && filter?.id === id) {
+      setFilter("");
+    } else if (filter?.item !== item || filter?.id === id) {
+      setFilter({ item, id });
+    }
+  };
+
+  const status = filter?.item && filter?.id === "status" ? filter?.item : "";
+  const gender = filter?.item && filter?.id === "gender" ? filter?.item : "";
+  const species = filter?.item && filter?.id === "species" ? filter?.item : "";
 
   const handleAllCharacter = async (value: string) => {
     if (characterState === CharacterState.ALL) {
-      const response = await getAllCharacter(value, currentPage);
+      const response = await getAllCharacter(
+        value,
+        currentPage,
+        status,
+        gender,
+        species
+      );
       setInfo({ count: response?.info.count, pages: response?.info.pages });
       setCharacters(response?.results as CharacterProps[]);
+      setPageSize(response?.info.pages);
     } else if (characterState === CharacterState.FAVORITES) {
       const favoriteCharacters = localStorage.getItem("likes")
         ? JSON.parse(localStorage.getItem("likes") as string)
@@ -105,10 +131,10 @@ export const Home = () => {
     const ConfirmDelete = () => (
       <S.DeleteAllFavorites>
         <span className="confirm" onClick={() => handleDeleteAllFavorites()}>
-          ✔ confirmar
+          ✔ Confirmar
         </span>
         <span className="cancel" onClick={() => setShowConfirm(false)}>
-          ✕ cancelar
+          ✕ Cancelar
         </span>
       </S.DeleteAllFavorites>
     );
@@ -126,14 +152,12 @@ export const Home = () => {
   };
 
   const PaginationHome = () =>
-    characterState === CharacterState.ALL ? (
-      <Pagination pageSize={pageSize} />
-    ) : null;
+    characterState === CharacterState.ALL ? <Pagination /> : null;
 
   useEffect(() => {
     handleAllCharacter(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, value, characterState, redrawCharacter]);
+  }, [currentPage, value, characterState, redrawCharacter, filter]);
 
   const SearchEmpty = () => {
     if (characters.length === 0 || characters.length === 0) {
@@ -163,7 +187,39 @@ export const Home = () => {
         />
       )}
       <S.ContainerPage>
-        <S.ContainerFilters>FILTROS</S.ContainerFilters>
+        <S.ContainerFilters>
+          <S.TitleFilter>Filtros</S.TitleFilter>
+          <S.SubtitleFilter>Status</S.SubtitleFilter>
+          {filterOptions?.status?.map((item: string) => (
+            <Filter
+              key={item}
+              id={"status"}
+              optionName={item}
+              stateFilter={filter}
+              onClick={() => handleFilter(item, "status")}
+            />
+          ))}
+          <S.SubtitleFilter>Gênero</S.SubtitleFilter>
+          {filterOptions?.genders?.map((item: string) => (
+            <Filter
+              key={item}
+              id={"gender"}
+              optionName={item}
+              stateFilter={filter}
+              onClick={() => handleFilter(item, "gender")}
+            />
+          ))}
+          <S.SubtitleFilter>Espécies</S.SubtitleFilter>
+          {filterOptions?.species?.map((item: string) => (
+            <Filter
+              key={item}
+              id={"species"}
+              optionName={item}
+              stateFilter={filter}
+              onClick={() => handleFilter(item, "species")}
+            />
+          ))}
+        </S.ContainerFilters>
         <S.Content>
           <S.ContainerCharacters>
             <S.Title>

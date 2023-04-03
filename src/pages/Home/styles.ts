@@ -10,9 +10,9 @@ export const ContainerPage = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: 30px;
-  line-height: 35px;
-  max-height: 35px;
+  font-size: 24px;
+  line-height: 30px;
+  max-height: 30px;
   font-weight: 600;
   width: 100%;
   margin-top: 0;
@@ -22,7 +22,7 @@ export const Title = styled.h1`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-rigth: 50px;
+  margin-right: 50px;
 `;
 
 export const CountCharacters = styled.p`
@@ -66,19 +66,38 @@ export const ContainerPagination = styled.div`
 `;
 
 export const ContainerFilters = styled.div`
-  display: flex;
+  max-width: 280px;
   flex-direction: column;
-  height: 500px;
-  min-width: 300px;
   margin-right: 40px;
+  padding: 0 20px;
+`;
 
 
-  border-radius: 5px;
+export const TitleFilter = styled.h1`
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  width: 100%;
+  color: ${colors.white};
+  width: 100%;
+  display: flex;
+  margin: 0;
+`;
+
+export const SubtitleFilter = styled.h2`
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: ${colors.white};
+`;
+
+export const ConatinerSubtitleFilter = styled.div`
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 700;
-  border: 1px solid white;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
 `;
 
 export const SearchEmptyImage = styled.img`
@@ -112,3 +131,4 @@ export const DeleteAllFavorites = styled.div`
     margin-right: 50px;
   }
 `;
+

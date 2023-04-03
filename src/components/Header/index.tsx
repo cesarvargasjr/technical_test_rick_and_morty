@@ -3,6 +3,7 @@ import { InputSearch } from "../Input/InputSearch";
 import { useSearchInput } from "../../context/InputSearch";
 import { usePagination } from "../../context/Pagination";
 import { CharacterState, useCharacter } from "../../context/Character";
+import { useFilters } from "../../context/Filters";
 import RickAndMorty from "../../assets/rickAndMorty.png";
 import * as S from "./styles";
 
@@ -10,9 +11,11 @@ export const Header = () => {
   const { value, setValue } = useSearchInput();
   const { setCurrentPage } = usePagination();
   const { setCharacterState } = useCharacter();
+  const { setFilter } = useFilters();
 
   const handleSearch = () => {
     setValue("");
+    setFilter("");
     setCurrentPage(1);
     setCharacterState(CharacterState.ALL);
   };
@@ -32,7 +35,7 @@ export const Header = () => {
       <S.Option onClick={handleFilterFavorites}>Favoritos</S.Option>
       <S.ContainerInput>
         <InputSearch
-          placeholder={"O que você procura?"}
+          placeholder={"Qual personagem você busca?"}
           value={value}
           // eslint-disable-next-line no-sequences
           onChange={(e) => (setValue(e.target.value), setCurrentPage(1))}
