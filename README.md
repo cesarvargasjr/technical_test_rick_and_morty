@@ -71,14 +71,33 @@ Executados os comandos abra em seu browser o endereço [http://localhost:3000](h
 
 Página principal:
 
+<img width="1417" alt="image" src="https://user-images.githubusercontent.com/72532360/229410798-a3e2ead5-4b73-4949-82c8-0e21e8c4555b.png">
+
 Lista de favoritos:
 
+<img width="1417" alt="image" src="https://user-images.githubusercontent.com/72532360/229410721-63b9d4f1-b935-4f03-879f-c97a31ac21fa.png">
+
 Modal:
+
+![image](https://user-images.githubusercontent.com/72532360/229406837-c0c33a35-af6b-43c8-a427-27aaad11b965.png)
 
 ### Versão Mobile:
 
 Página principal:
 
+<img width="267" alt="image" src="https://user-images.githubusercontent.com/72532360/229410887-a37d5088-4c9a-4ca2-9984-5bceace94a04.png">
+
 Lista de favoritos:
 
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410910-643d33aa-2c13-4dc6-82e7-8dac00a74391.png">
+
+Filtros:
+
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410949-9f7036e0-d71f-4e35-ad32-9ef7c87b037e.png">
+
 Modal:
+
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410984-c561d697-3641-416b-8cf4-2b18ee3513ab.png">
+
+
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410949-9f7036e0-d71f-4e35-ad32-9ef7c87b037e.png">
