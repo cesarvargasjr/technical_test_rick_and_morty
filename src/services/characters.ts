@@ -1,8 +1,8 @@
 import api from './api';
 
-export const getAllCharacter = async (value: string, page = 1) => {
+export const getAllCharacter = async (value: string, page = 1, status?: string, gender?: string, species?: string) => {
   try {
-    const { data } = await api.get(`/character/?page=${page}&name=${value}`);
+    const { data } = await api.get(`/character/?page=${page}&name=${value}&status=${status}&gender=${gender}&species=${species}`);
     return data;
   } catch (error: any) {
     console.log(error);
