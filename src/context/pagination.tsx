@@ -2,10 +2,10 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 interface ContextProps {
   currentPage: number;
-  setCurrentPage: (args: number) => void;
   pageList: any[];
   pageSize: number;
   setPageSize: (page: number) => void;
+  setCurrentPage: (args: number) => void;
 }
 
 export const Pagination = createContext({} as ContextProps);
