@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAllCharacter, getCharacter } from "../../services/characters";
-import { usePagination } from "../../context/Pagination";
-import { useSearchInput } from "../../context/InputSearch";
+import { usePagination } from "../../context/PaginationCharacters";
+import { useSearchInput } from "../../context/SearchInput";
 import { ModalCharacter } from "../../components/ModalCharacter";
 import { Pagination } from "../../components/Pagination";
 import { Card } from "../../components/Card";
@@ -60,6 +60,8 @@ export const Home = () => {
     } else if (filter?.item !== item || filter?.id === id) {
       setFilter({ item, id });
     }
+
+    handleCloseMenu();
   };
 
   const status = filter?.item && filter?.id === "status" ? filter?.item : "";
@@ -154,6 +156,11 @@ export const Home = () => {
   const PaginationHome = () =>
     characterState === CharacterState.ALL ? <Pagination /> : null;
 
+  const handleCloseMenu = () => {
+    const overlay = document.querySelector(".open .overlay") as HTMLElement;
+    overlay?.click();
+  };
+
   useEffect(() => {
     handleAllCharacter(value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -187,8 +194,14 @@ export const Home = () => {
         />
       )}
       <S.ContainerPage>
-        <S.ContainerFilters>
-          <S.TitleFilter>Filtros</S.TitleFilter>
+        <span className="overlay"></span>
+        <S.ContainerFilters className="container-filters">
+          <S.TitleFilter>
+            <div>Filtros</div>
+            <div className="menu-close" onClick={handleCloseMenu}>
+              ✕
+            </div>
+          </S.TitleFilter>
           <S.SubtitleFilter>Status</S.SubtitleFilter>
           {filterOptions?.status?.map((item: string) => (
             <Filter

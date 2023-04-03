@@ -1,7 +1,7 @@
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
-import { InputSearchProvider } from "./context/InputSearch";
-import { PaginationProvider } from "./context/Pagination";
+import { InputSearchProvider } from "./context/SearchInput";
+import { PaginationProvider } from "./context/PaginationCharacters";
 import { CharacterProvider } from "./context/Character";
 import { FilterProvider } from "./context/Filters";
 

@@ -13,6 +13,14 @@ export const ContainerInput = styled.div`
     font-weight: 600;
     color: ${colors.white};
     background: rgba(255, 255, 255, 0.09);
+
+    @media(max-width: 900px) {
+      width: 100%;
+    }
+  }
+  
+  @media(max-width: 900px) {
+    width: 100%;
   }
 `;
 

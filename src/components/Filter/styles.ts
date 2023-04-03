@@ -14,7 +14,7 @@ export const ContainerOption = styled.div<{ stateFilter: string }>`
     color: ${colors.blue};
     border-color: ${colors.blue};
   };
-
+  
   &.active {
     color: ${colors.blue};
     border-color: ${colors.blue};

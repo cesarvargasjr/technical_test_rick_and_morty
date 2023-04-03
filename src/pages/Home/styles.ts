@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import colors from '../../styles/colors';
+import styled from "styled-components";
+import colors from "../../styles/colors";
 
 export const ContainerPage = styled.div`
   display: flex;
@@ -7,6 +7,23 @@ export const ContainerPage = styled.div`
   min-height: 100vh;
   padding: 60px 25px 0 25px;
   background-color: ${colors.darkBlue};
+
+  @media (max-width: 1230px) {
+    &.open .overlay {
+      content: "";
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      background: #0a0a0ad4;
+      top: 0;
+      right: 0;
+      z-index: 0;
+    }
+
+    &.open .container-filters {
+      translate: 0px !important;
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -23,6 +40,11 @@ export const Title = styled.h1`
   flex-direction: row;
   align-items: center;
   margin-right: 50px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 export const CountCharacters = styled.p`
@@ -70,8 +92,19 @@ export const ContainerFilters = styled.div`
   flex-direction: column;
   margin-right: 40px;
   padding: 0 20px;
-`;
 
+  @media (max-width: 1230px) {
+    position: fixed;
+    background: rgb(10, 19, 37);
+    height: 100%;
+    left: 0;
+    top: 0px;
+    padding-top: 21px;
+    translate: -100%;
+    transition: translate 0.4s ease-in-out;
+    z-index: 2;
+  }
+`;
 
 export const TitleFilter = styled.h1`
   font-size: 24px;
@@ -82,6 +115,18 @@ export const TitleFilter = styled.h1`
   width: 100%;
   display: flex;
   margin: 0;
+  justify-content: space-between;
+
+  & .menu-close {
+    font-weight: 200;
+    display: none;
+  }
+
+  @media (max-width: 1230px) {
+    & .menu-close {
+      display: block;
+    }
+  }
 `;
 
 export const SubtitleFilter = styled.h2`
@@ -130,5 +175,10 @@ export const DeleteAllFavorites = styled.div`
   & span.confirm {
     margin-right: 50px;
   }
-`;
 
+  @media (max-width: 768px) {
+    bottom: -31px;
+    right: -31px;
+    font-size: 11px;
+  }
+`;

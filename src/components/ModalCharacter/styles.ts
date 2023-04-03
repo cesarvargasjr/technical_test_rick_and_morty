@@ -14,11 +14,17 @@ export const ContainerModal = styled.div`
   padding: 40px;
   border-radius: 5px;
   background-color: ${colors.white};
-  box-shadow: 0px 0px 18px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 18px -4px rgba(0, 0, 0, 0.75);
   width: 600px;
   height: 250px;
   justify-content: space-between;
   background-color: ${colors.greyLight};
+
+  @media (max-width: 714px) {
+    flex-direction: column;
+    width: 66%;
+    height: auto;
+  }
 `;
 
 export const Background = styled.div`
@@ -27,7 +33,7 @@ export const Background = styled.div`
   top: 0;
   position: fixed;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.30);
+  background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
   z-index: 1000;
 `;
@@ -36,6 +42,12 @@ export const ImgCharacter = styled.img`
   height: 250px;
   width: 180px;
   border-radius: 5px;
+
+  @media (max-width: 714px) {
+    height: 280px;
+    width: 263px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const Like = styled.img`
@@ -90,8 +102,11 @@ export const ContainerInfo = styled.div`
   align-items: flex-start;
   width: 100%;
   height: 100%;
-`;
 
+  @media (max-width: 714px) {
+    margin: 0;
+  }
+`;
 
 export const ContainerOptions = styled.div``;
 
@@ -123,7 +138,17 @@ export const Status = styled.div<{ status?: string }>`
   align-items: center;
   margin-left: 30px;
   background: ${({ status }) =>
-    status === 'Alive' ? colors.green :
-      status === 'Dead' ? colors.red :
-        colors.orange};
+    status === "Alive"
+      ? colors.green
+      : status === "Dead"
+        ? colors.red
+        : colors.orange};
+
+  @media (max-width: 714px) {
+    right: ${({ status }) =>
+    status === "Alive" ? "256px" : status === "Dead" ? "256px" : "217px"};
+    top: 52px;
+    margin: 0px;
+    position: absolute;
+  }
 `;
