@@ -14,6 +14,11 @@ export const CurrentePage = styled.p`
   font-size: 21px;
   line-height: 30px;
   color: ${colors.white};
+  cursor: pointer;
+
+  &.active {
+    color: ${colors.blue}
+  }
 `;
 
 export const NextPage = styled.p<{ currentPage?: number, pageSize?: number }>`

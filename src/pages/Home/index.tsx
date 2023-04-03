@@ -35,7 +35,7 @@ interface SingleCharacterProps {
 export const Home = () => {
   const { value } = useSearchInput();
   const { filter, setFilter } = useFilters();
-  const { currentPage } = usePagination();
+  const { currentPage, setPageSize, pageSize } = usePagination();
   const {
     characters,
     setCharacters,
@@ -48,7 +48,6 @@ export const Home = () => {
   const [info, setInfo] = useState<InfoProps>();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [items] = useState([]);
-  const pageSize: any = info?.pages;
 
   const filterOptions =
     JSON.parse(localStorage.getItem("filters") as string) || [];
@@ -78,6 +77,7 @@ export const Home = () => {
       );
       setInfo({ count: response?.info.count, pages: response?.info.pages });
       setCharacters(response?.results as CharacterProps[]);
+      setPageSize(response?.info.pages);
     } else if (characterState === CharacterState.FAVORITES) {
       const favoriteCharacters = localStorage.getItem("likes")
         ? JSON.parse(localStorage.getItem("likes") as string)
@@ -152,9 +152,7 @@ export const Home = () => {
   };
 
   const PaginationHome = () =>
-    characterState === CharacterState.ALL ? (
-      <Pagination pageSize={pageSize} />
-    ) : null;
+    characterState === CharacterState.ALL ? <Pagination /> : null;
 
   useEffect(() => {
     handleAllCharacter(value);

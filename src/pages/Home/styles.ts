@@ -66,10 +66,10 @@ export const ContainerPagination = styled.div`
 `;
 
 export const ContainerFilters = styled.div`
-  display: flex;
+  max-width: 280px;
   flex-direction: column;
   margin-right: 40px;
-  padding: 0 40px;
+  padding: 0 20px;
 `;
 
 
@@ -99,18 +99,6 @@ export const ConatinerSubtitleFilter = styled.div`
   width: 100%;
   margin-top: 10px;
 `;
-
-// export const ExpandFilter = styled.h2`
-//   font-size: 11px;
-//   font-weight: 500;
-//   color: ${colors.white};
-//   cursor: pointer;
-
-//   :hover {
-//     color: ${colors.blue};
-//     text-decoration: underline;
-//   };
-// `;
 
 export const SearchEmptyImage = styled.img`
   height: 200px;

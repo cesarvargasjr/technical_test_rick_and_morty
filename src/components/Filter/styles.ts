@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import colors from '../../styles/colors';
 
 export const ContainerOption = styled.div<{ stateFilter: string }>`
-  display: flex;
+  display: inline-block;
+  margin-right: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   color: ${colors.white};
