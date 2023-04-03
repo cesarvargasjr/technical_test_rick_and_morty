@@ -65,9 +65,7 @@ Executados os comandos abra em seu browser o endereço [http://localhost:3000](h
 
 ##
 
-### Screenshot:
-
-### Versão Desktop:
+### Screenshot Desktop:
 
 Página principal:
 
@@ -85,7 +83,7 @@ Modal:
 
 ![image](https://user-images.githubusercontent.com/72532360/229406837-c0c33a35-af6b-43c8-a427-27aaad11b965.png)
 
-### Versão Mobile:
+### Screenshot Mobile:
 
 Página principal:
 
