@@ -1,7 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import { useState } from "react";
 import { InputSearch } from "../Input/InputSearch";
-import { useSearchInput } from "../../context/InputSearch";
-import { usePagination } from "../../context/Pagination";
+import { useSearchInput } from "../../context/SearchInput";
+import { usePagination } from "../../context/PaginationCharacters";
 import { CharacterState, useCharacter } from "../../context/Character";
 import { useFilters } from "../../context/Filters";
 import RickAndMorty from "../../assets/rickAndMorty.png";
@@ -12,8 +12,10 @@ export const Header = () => {
   const { setCurrentPage } = usePagination();
   const { setCharacterState } = useCharacter();
   const { setFilter } = useFilters();
+  const [active, setActive] = useState("todos");
 
   const handleSearch = () => {
+    setActive("todos");
     setValue("");
     setFilter("");
     setCurrentPage(1);
@@ -21,8 +23,22 @@ export const Header = () => {
   };
 
   const handleFilterFavorites = () => {
+    setActive("favoritos");
     setCharacterState(CharacterState.FAVORITES);
   };
+
+  const handleOpenMenuFiltersMobile = () => {
+    setActive("filtros");
+    const containerFilters = document.querySelector(".container-filters");
+    containerFilters?.parentElement?.classList.add("open");
+
+    const overlay = document.querySelector(".open .overlay");
+    overlay?.addEventListener("click", () => {
+      containerFilters?.parentElement?.classList.remove("open");
+    });
+  };
+
+  const hasActive = (name: string) => (name === active ? "active" : "");
 
   return (
     <S.ContainerHeader>
@@ -31,8 +47,21 @@ export const Header = () => {
         alt="rick and morty"
         onClick={() => handleSearch()}
       />
-      <S.Option onClick={handleSearch}>Todos</S.Option>
-      <S.Option onClick={handleFilterFavorites}>Favoritos</S.Option>
+      <S.Option
+        className={hasActive("filtros") + " menu-filtros"}
+        onClick={handleOpenMenuFiltersMobile}
+      >
+        Filtros
+      </S.Option>
+      <S.Option className={hasActive("todos")} onClick={handleSearch}>
+        Todos
+      </S.Option>
+      <S.Option
+        className={hasActive("favoritos")}
+        onClick={handleFilterFavorites}
+      >
+        Favoritos
+      </S.Option>
       <S.ContainerInput>
         <InputSearch
           placeholder={"Qual personagem você busca?"}

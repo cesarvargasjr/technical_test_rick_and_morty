@@ -1,4 +1,4 @@
-import { usePagination } from "../../context/Pagination";
+import { usePagination } from "../../context/PaginationCharacters";
 import * as S from "./styles";
 
 export const Pagination = () => {
