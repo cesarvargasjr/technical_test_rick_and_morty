@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+## Teste técnico: Consumo da API do Rick and Morty
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Objetivo do desenvolvimento:
 
-## Available Scripts
+Tem-se por objetivo no desenvolvimento desta aplicação consumir a API ([https://rickandmortyapi.com/documentation/](https://rickandmortyapi.com/documentation/)) do desenho animado Rick and Morty e exibir em tela os seus personagens juntamente com informações detalhadas de cada um, além disso, desenvolver um layout responsivo.
 
-In the project directory, you can run:
+##
 
-### `npm start`
+### Detalhes do desenvolvimento do projeto:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Antes de iniciar o desenvolvimento de fato, após entender claramente a proposta do teste, criei um roadmap para evoluir as implementações de forma organizada e planjeada.
+Tendo também como princípio três pilares, UI, UX e Código. Como base para proporcionar interfaces interativas e agradáveis para o usuário, experiência intuitiva e performática na utilização do sistema, e é claro, um código bem construído, de forma clean e legível para facilitar o entendimento de qualquer programador que for dar manutenção em algum momento.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Aprofundando um pouco a parte técnica, para o consumo da API utilizei o Axios. Não esquecendo de tratar possíveis erros de requisições evitando gerar experiência negativa ao usuário. Apliquei uma arquiterura organizada conforme a convenção recomenda e componentizando todos os componentes que possam ser reutilizados em outros pontos do sistema, dessa forma, além de ser possível reutilizá-los tornam os códigos implementados mais otimizados e organizados para futuras manutenções. Um detalhe importante para o bom funcionamento do sistema e também aplicando uma boa prática na manipulação de estados globais, utilizei o contextApi para fazer o gerenciamento dos mesmos. Para finalizar, também defini fontes e cores globais que auxiliam e proporcionam um desenvolvimento veloz e garante que os estilos utilizados estão seguindo o padrão pré-definido.
 
-### `npm test`
+##
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Funcionalidades desenvolvidas:
 
-### `npm run build`
+- Na Página principal exibe uma lista paginada com todos os personagens, são exibidos a cada 20 e é possível trocar a página para visualizar os seguintes;
+- Cards que exibem a foto do personagem para que o usuário possa identificá-los e abaixo o seu respectivo nome;
+- Modal para ver mais detalhes de cada personagem, ao clicar em um card o modal é aberto, no seu conteúdo é possível visualizar informações do personagem e também favoritar o mesmo, ao realizar esta ação o personagem é adicionado em uma listagem de favoritos;
+- Listagem de favoritos para exibir os personagens que o usuário adicionou como favorito;
+- Input para buscar um personagem específico na listagem total dos personagens;
+- Filtros selecionáveis pelas seguintes classes: Status, Gênero e Espécies. Cada classe possui suas opções conforme as possibilidades presentes na API;
+- Layout responsivo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tecnologias utilizadas no desenvolvimento:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ReactJS
+- Typescript
+- JavaScript
+- HTML
+- CSS (Styled Components)
+- ContextAPI
+- Axios
 
-### `npm run eject`
+##
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Para executar o projeto:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+# Clonar o repositório:
+$ git clone https://github.com/cesarvargasjr/technical_test_rick_and_morty.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+# Acessar a pasta do projeto via terminal:
+$ cd technical-test-green-acesso
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+# Instale as dependências:
+$ npm i
+```
 
-## Learn More
+```bash
+# Execute a aplicação:
+$ npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Executados os comandos abra em seu browser o endereço [http://localhost:3000](http://localhost:3000) para utilizar o sistema.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+##
+
+### Screenshot:
+
+### Versão Desktop:
+
+Página principal:
+
+Lista de favoritos:
+
+Modal:
+
+### Versão Mobile:
+
+Página principal:
+
+Lista de favoritos:
+
+Modal:
