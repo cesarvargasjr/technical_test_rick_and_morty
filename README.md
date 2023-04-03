@@ -77,6 +77,10 @@ Lista de favoritos:
 
 <img width="1417" alt="image" src="https://user-images.githubusercontent.com/72532360/229410721-63b9d4f1-b935-4f03-879f-c97a31ac21fa.png">
 
+Paginação:
+
+<img width="1415" alt="image" src="https://user-images.githubusercontent.com/72532360/229411173-bccabaf8-9648-4713-9176-45a56fd8f8ec.png">
+
 Modal:
 
 ![image](https://user-images.githubusercontent.com/72532360/229406837-c0c33a35-af6b-43c8-a427-27aaad11b965.png)
@@ -99,5 +103,3 @@ Modal:
 
 <img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410984-c561d697-3641-416b-8cf4-2b18ee3513ab.png">
 
-
-<img width="266" alt="image" src="https://user-images.githubusercontent.com/72532360/229410949-9f7036e0-d71f-4e35-ad32-9ef7c87b037e.png">
