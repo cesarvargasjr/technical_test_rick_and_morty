@@ -2,7 +2,7 @@
 
 ### Objetivo do desenvolvimento:
 
-Tem-se por objetivo no desenvolvimento desta aplicação consumir a API ([https://rickandmortyapi.com/documentation/](https://rickandmortyapi.com/documentation/)) do desenho animado Rick and Morty e exibir em tela os seus personagens juntamente com informações detalhadas de cada um, além disso, desenvolver um layout responsivo.
+Tem-se por objetivo no desenvolvimento desta aplicação consumir a API ([https://rickandmortyapi.com/documentation/](Acessar API) do desenho animado Rick and Morty e exibir em tela os seus personagens juntamente com informações detalhadas de cada um, além disso, desenvolver um layout responsivo.
 
 ##
 
